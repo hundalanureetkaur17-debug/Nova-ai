@@ -10,7 +10,7 @@ const missing = need.filter(k => !process.env[k]);
 if (missing.length) { console.error('Missing in .env: ' + missing.join(', ')); process.exit(1); }
 
 const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
-const ai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const ai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL || undefined });
 const MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini';
 const SYS = 'You are NOVA AI, a helpful, concise, friendly assistant for productivity, writing, learning and planning.';
 const app = express();
